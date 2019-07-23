@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1FB46E9-B1F7-4ED9-8C43-5E494F593C11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TuSharePro</RootNamespace>
+    <AssemblyName>TuSharePro</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Request\AdjFactorRequest.cs" />
+    <Compile Include="Models\Request\AnnsRequest.cs" />
+    <Compile Include="Models\Request\BalancesheetRequest.cs" />
+    <Compile Include="Models\Request\BarRequest.cs" />
+    <Compile Include="Models\Request\BlockTradeRequest.cs" />
+    <Compile Include="Models\Request\CashflowRequest.cs" />
+    <Compile Include="Models\Request\CctvNewsRequest.cs" />
+    <Compile Include="Models\Request\ConceptDetailRequest.cs" />
+    <Compile Include="Models\Request\ConceptRequest.cs" />
+    <Compile Include="Models\Request\DailyBasicRequest.cs" />
+    <Compile Include="Models\Request\DisclosureDateRequest.cs" />
+    <Compile Include="Models\Request\DividendRequest.cs" />
+    <Compile Include="Models\Request\ExpressRequest.cs" />
+    <Compile Include="Models\Request\FinaAuditRequest.cs" />
+    <Compile Include="Models\Request\FinaIndicatorRequest.cs" />
+    <Compile Include="Models\Request\FinaMainbzRequest.cs" />
+    <Compile Include="Models\Request\ForecastRequest.cs" />
+    <Compile Include="Models\Request\FundBasicRequest.cs" />
+    <Compile Include="Models\Request\FundCompanyRequest.cs" />
+    <Compile Include="Models\Request\FundDivRequest.cs" />
+    <Compile Include="Models\Request\FundNavRequest.cs" />
+    <Compile Include="Models\Request\FundPortfolioRequest.cs" />
+    <Compile Include="Models\Request\FutBasicRequest.cs" />
+    <Compile Include="Models\Request\FutDailyRequest.cs" />
+    <Compile Include="Models\Request\FutHoldingRequest.cs" />
+    <Compile Include="Models\Request\FutSettleRequest.cs" />
+    <Compile Include="Models\Request\FutWsrRequest.cs" />
+    <Compile Include="Models\Request\FxDailyRequest.cs" />
+    <Compile Include="Models\Request\FxObasicRequest.cs" />
+    <Compile Include="Models\Request\GgtTop10Request.cs" />
+    <Compile Include="Models\Request\GzIndexRequest.cs" />
+    <Compile Include="Models\Request\HiborRequest.cs" />
+    <Compile Include="Models\Request\HsConstRequest.cs" />
+    <Compile Include="Models\Request\HsgtTop10Request.cs" />
+    <Compile Include="Models\Request\IncomeRequest.cs" />
+    <Compile Include="Models\Request\IndexBasicRequest.cs" />
+    <Compile Include="Models\Request\IndexClassifyRequest.cs" />
+    <Compile Include="Models\Request\IndexDailybasicRequest.cs" />
+    <Compile Include="Models\Request\IndexMemberRequest.cs" />
+    <Compile Include="Models\Request\IndexWeightRequest.cs" />
+    <Compile Include="Models\Request\LiborRequest.cs" />
+    <Compile Include="Models\Request\MarginDetailRequest.cs" />
+    <Compile Include="Models\Request\MarginRequest.cs" />
+    <Compile Include="Models\Request\MoneyflowHsgtRequest.cs" />
+    <Compile Include="Models\Request\MoneyFlowRequest.cs" />
+    <Compile Include="Models\Request\NameChangeRequest.cs" />
+    <Compile Include="Models\Request\NewShareRequest.cs" />
+    <Compile Include="Models\Request\NewsRequest.cs" />
+    <Compile Include="Models\Request\OptBasicRequest.cs" />
+    <Compile Include="Models\Request\OptDailyRequest.cs" />
+    <Compile Include="Models\Request\PledgeDetailRequest.cs" />
+    <Compile Include="Models\Request\PledgeStatRequest.cs" />
+    <Compile Include="Models\Request\RepurchaseRequest.cs" />
+    <Compile Include="Models\Request\ShareFloatRequest.cs" />
+    <Compile Include="Models\Request\ShiborLprRequest.cs" />
+    <Compile Include="Models\Request\ShiborQuoteRequest.cs" />
+    <Compile Include="Models\Request\ShiborRequest.cs" />
+    <Compile Include="Models\Request\StkAccountOldRequest.cs" />
+    <Compile Include="Models\Request\StkAccountRequest.cs" />
+    <Compile Include="Models\Request\StkHoldernumberRequest.cs" />
+    <Compile Include="Models\Request\StkHoldertradeRequest.cs" />
+    <Compile Include="Models\Request\StkLimitRequest.cs" />
+    <Compile Include="Models\Request\StockBasicRequest.cs" />
+    <Compile Include="Models\Request\StockCompanyRequest.cs" />
+    <Compile Include="Models\Request\SuspendRequest.cs" />
+    <Compile Include="Models\Request\Top10FloatholdersRequest.cs" />
+    <Compile Include="Models\Request\Top10HoldersRequest.cs" />
+    <Compile Include="Models\Request\TopInstRequest.cs" />
+    <Compile Include="Models\Request\TopListRequest.cs" />
+    <Compile Include="Models\Request\TradeCalRequest.cs" />
+    <Compile Include="Models\Request\WzIndexRequest.cs" />
+    <Compile Include="Models\Request\_BaseRequest.cs" />
+    <Compile Include="Models\Response\_BaseResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CoreApi.cs" />
+    <Compile Include="Utils\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
