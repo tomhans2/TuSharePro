@@ -5,12 +5,12 @@
     <version>1.0.2</version>
     <authors>Tom Han</authors>
     <owners>Tom Han</owners>
-    <licenseUrl>https://github.com/tomhans2/TuSharePro.Net/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/tomhans2/TuSharePro.Net</projectUrl>
-    <iconUrl>https://github.com/tomhans2/TuSharePro.Net/blob/master/favicon-32x32.png</iconUrl>
+    <licenseUrl>https://github.com/tomhans2/TuSharePro/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tomhans2/TuSharePro</projectUrl>
+    <iconUrl>https://github.com/tomhans2/TuSharePro/blob/master/favicon-32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>TuSharePro api for .Net</description>
-    <releaseNotes>Initial release for TuSharePro api, implemated api connetion, api functions requests and has function convert to DataTable</releaseNotes>
+    <releaseNotes>Update: Rewrite api function using async</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>TuSharePro Api</tags>
     <dependencies>

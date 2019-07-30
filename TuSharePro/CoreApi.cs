@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TuSharePro.Models.Request;
 using TuSharePro.Models.Response;
 
@@ -30,7 +31,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse daily(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> daily(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -50,11 +51,11 @@ namespace TuSharePro
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
             
         }
@@ -67,7 +68,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse weekly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> weekly(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -87,11 +88,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -104,7 +105,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse monthly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> monthly(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -124,11 +125,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -141,7 +142,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse index_daily(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_daily(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -161,11 +162,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -178,7 +179,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse index_weekly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_weekly(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -198,11 +199,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -215,7 +216,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse index_monthly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_monthly(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -235,11 +236,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -252,7 +253,7 @@ namespace TuSharePro
         /// <param name="is_hs"></param>
         /// <param name="list_status"></param>
         /// <param name="exchange"></param>
-        public _BaseResponse stock_basic(string is_hs, string list_status, string exchange)
+        public async Task<_BaseResponse> stock_basic(string is_hs, string list_status, string exchange)
         {
             try
             {
@@ -272,11 +273,12 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -287,7 +289,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="is_open"></param>
-        public _BaseResponse trade_cal(string exchange, string start_date, string end_date,string is_open)
+        public async Task<_BaseResponse> trade_cal(string exchange, string start_date, string end_date,string is_open)
         {
             try
             {
@@ -307,11 +309,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -322,7 +324,7 @@ namespace TuSharePro
         /// <param name="hs_type"></param>
         /// <param name="is_new"></param>
 
-        public _BaseResponse hs_const(string hs_type, string is_new)
+        public async Task<_BaseResponse> hs_const(string hs_type, string is_new)
         {
             try
             {
@@ -340,11 +342,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -353,7 +355,7 @@ namespace TuSharePro
         /// 市场信息-上市公司基本信息
         /// </summary>
         /// <param name="exchange"></param>
-        public _BaseResponse stock_company(string exchange)
+        public async Task<_BaseResponse> stock_company(string exchange)
         {
             try
             {
@@ -370,11 +372,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -384,7 +386,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse new_share(string start_date, string end_date)
+        public async Task<_BaseResponse> new_share(string start_date, string end_date)
         {
             try
             {
@@ -402,11 +404,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -416,7 +418,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse namechange(string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> namechange(string ts_code, string start_date, string end_date)
         {
             try
             {
@@ -435,11 +437,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -451,7 +453,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse adj_factor(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> adj_factor(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -471,11 +473,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -487,7 +489,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse daily_basic(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> daily_basic(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -507,11 +509,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -523,7 +525,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse moneyflow(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> moneyflow(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -543,11 +545,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -559,7 +561,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse stk_limit(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> stk_limit(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -579,11 +581,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -594,7 +596,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="suspend_date"></param>
         /// <param name="resume_date"></param>
-        public _BaseResponse suspend(string ts_code, string suspend_date, string resume_date)
+        public async Task<_BaseResponse> suspend(string ts_code, string suspend_date, string resume_date)
         {
             try
             {
@@ -614,11 +616,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -635,7 +637,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public _BaseResponse income(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> income(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
         {
             try
             {
@@ -659,11 +661,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -678,7 +680,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public _BaseResponse balancesheet(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> balancesheet(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
         {
             try
             {
@@ -702,11 +704,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -721,7 +723,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public _BaseResponse cashflow(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> cashflow(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
         {
             try
             {
@@ -745,11 +747,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -763,7 +765,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="period"></param>
         /// <param name="type"></param>
-        public _BaseResponse forecast(string ts_code, string ann_date, string start_date, string end_date, string period, string type)
+        public async Task<_BaseResponse> forecast(string ts_code, string ann_date, string start_date, string end_date, string period, string type)
         {
             try
             {
@@ -786,11 +788,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -803,7 +805,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public _BaseResponse express(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> express(string ts_code, string ann_date, string start_date, string end_date, string period)
         {
             try
             {
@@ -825,11 +827,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -842,7 +844,7 @@ namespace TuSharePro
         /// <param name="record_date"></param>
         /// <param name="ex_date"></param>
         /// <param name="imp_ann_date"></param>
-        public _BaseResponse dividend(string ts_code, string ann_date, string record_date, string ex_date, string imp_ann_date)
+        public async Task<_BaseResponse> dividend(string ts_code, string ann_date, string record_date, string ex_date, string imp_ann_date)
         {
             try
             {
@@ -864,11 +866,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -881,7 +883,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public _BaseResponse fina_indicator(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> fina_indicator(string ts_code, string ann_date, string start_date, string end_date, string period)
         {
             try
             {
@@ -903,11 +905,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -920,7 +922,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public _BaseResponse fina_audit(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> fina_audit(string ts_code, string ann_date, string start_date, string end_date, string period)
         {
             try
             {
@@ -942,11 +944,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -959,7 +961,7 @@ namespace TuSharePro
         /// <param name="type"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fina_mainbz(string ts_code, string period, string type, string start_date, string end_date)
+        public async Task<_BaseResponse> fina_mainbz(string ts_code, string period, string type, string start_date, string end_date)
         {
             try
             {
@@ -981,11 +983,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -997,7 +999,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="pre_date"></param>
         /// <param name="actual_date"></param>
-        public _BaseResponse disclosure_date(string ts_code, string end_date, string pre_date, string actual_date)
+        public async Task<_BaseResponse> disclosure_date(string ts_code, string end_date, string pre_date, string actual_date)
         {
             try
             {
@@ -1018,11 +1020,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1035,7 +1037,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse moneyflow_hsgt(string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> moneyflow_hsgt(string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -1055,11 +1057,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1073,7 +1075,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="market_type"></param>
 
-        public _BaseResponse hsgt_top10(string ts_code,string trade_date, string start_date, string end_date,string market_type)
+        public async Task<_BaseResponse> hsgt_top10(string ts_code,string trade_date, string start_date, string end_date,string market_type)
         {
             try
             {
@@ -1095,11 +1097,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1113,7 +1115,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="market_type"></param>
 
-        public _BaseResponse ggt_top10(string ts_code, string trade_date, string start_date, string end_date, string market_type)
+        public async Task<_BaseResponse> ggt_top10(string ts_code, string trade_date, string start_date, string end_date, string market_type)
         {
             try
             {
@@ -1135,11 +1137,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1152,7 +1154,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse margin(string trade_date, string exchange_id, string start_date, string end_date)
+        public async Task<_BaseResponse> margin(string trade_date, string exchange_id, string start_date, string end_date)
         {
             try
             {
@@ -1173,11 +1175,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1190,7 +1192,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse margin_detail(string trade_date, string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> margin_detail(string trade_date, string ts_code, string start_date, string end_date)
         {
             try
             {
@@ -1211,11 +1213,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1229,7 +1231,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse top10_holders(string ts_code, string period, string ann_date, string start_date, string end_date)
+        public async Task<_BaseResponse> top10_holders(string ts_code, string period, string ann_date, string start_date, string end_date)
         {
             try
             {
@@ -1251,11 +1253,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1269,7 +1271,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse top10_floatholders(string ts_code, string period, string ann_date, string start_date, string end_date)
+        public async Task<_BaseResponse> top10_floatholders(string ts_code, string period, string ann_date, string start_date, string end_date)
         {
             try
             {
@@ -1291,11 +1293,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1306,7 +1308,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="ts_code"></param>
 
-        public _BaseResponse top_list(string trade_date, string ts_code)
+        public async Task<_BaseResponse> top_list(string trade_date, string ts_code)
         {
             try
             {
@@ -1325,11 +1327,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1340,7 +1342,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="ts_code"></param>
 
-        public _BaseResponse top_inst(string trade_date, string ts_code)
+        public async Task<_BaseResponse> top_inst(string trade_date, string ts_code)
         {
             try
             {
@@ -1359,11 +1361,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1373,7 +1375,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="ts_code"></param>
 
-        public _BaseResponse pledge_stat(string ts_code)
+        public async Task<_BaseResponse> pledge_stat(string ts_code)
         {
             try
             {
@@ -1391,11 +1393,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1405,7 +1407,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="ts_code"></param>
 
-        public _BaseResponse pledge_detail(string ts_code)
+        public async Task<_BaseResponse> pledge_detail(string ts_code)
         {
             try
             {
@@ -1423,11 +1425,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1439,7 +1441,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public _BaseResponse repurchase(string ann_date,string start_date, string end_date)
+        public async Task<_BaseResponse> repurchase(string ann_date,string start_date, string end_date)
         {
             try
             {
@@ -1459,11 +1461,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1472,7 +1474,7 @@ namespace TuSharePro
         /// 市场参考-概念股分类
         /// </summary>
         /// <param name="src"></param>
-        public _BaseResponse concept(string src)
+        public async Task<_BaseResponse> concept(string src)
         {
             try
             {
@@ -1490,11 +1492,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1504,7 +1506,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="id"></param>
         /// <param name="ts_code"></param>
-        public _BaseResponse concept_detail(string id,string ts_code)
+        public async Task<_BaseResponse> concept_detail(string id,string ts_code)
         {
             try
             {
@@ -1523,11 +1525,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1540,7 +1542,7 @@ namespace TuSharePro
         /// <param name="float_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse share_float(string ts_code, string ann_date, string float_date, string start_date, string end_date)
+        public async Task<_BaseResponse> share_float(string ts_code, string ann_date, string float_date, string start_date, string end_date)
         {
             try
             {
@@ -1562,11 +1564,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1579,7 +1581,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse block_trade(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> block_trade(string ts_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -1600,11 +1602,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1615,7 +1617,7 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse stk_account(string date,  string start_date, string end_date)
+        public async Task<_BaseResponse> stk_account(string date,  string start_date, string end_date)
         {
             try
             {
@@ -1635,11 +1637,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1649,7 +1651,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse stk_account_old(string start_date, string end_date)
+        public async Task<_BaseResponse> stk_account_old(string start_date, string end_date)
         {
             try
             {
@@ -1668,11 +1670,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1684,7 +1686,7 @@ namespace TuSharePro
         /// <param name="enddate"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse stk_holdernumber(string ts_code, string enddate, string start_date, string end_date)
+        public async Task<_BaseResponse> stk_holdernumber(string ts_code, string enddate, string start_date, string end_date)
         {
             try
             {
@@ -1705,11 +1707,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1723,7 +1725,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="trade_type"></param>
         /// <param name="holder_type"></param>
-        public _BaseResponse stk_holdertrade(string ts_code, string ann_date, string start_date, string end_date, string trade_type, string holder_type)
+        public async Task<_BaseResponse> stk_holdertrade(string ts_code, string ann_date, string start_date, string end_date, string trade_type, string holder_type)
         {
             try
             {
@@ -1746,11 +1748,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1763,7 +1765,7 @@ namespace TuSharePro
         /// <param name="market"></param>
         /// <param name="publisher"></param>
         /// <param name="category"></param>
-        public _BaseResponse index_basic(string market, string publisher, string category)
+        public async Task<_BaseResponse> index_basic(string market, string publisher, string category)
         {
             try
             {
@@ -1783,11 +1785,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1799,7 +1801,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse index_weight(string index_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_weight(string index_code, string trade_date, string start_date, string end_date)
         {
             try
             {
@@ -1820,11 +1822,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1836,7 +1838,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse index_dailybasic(string trade_date, string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> index_dailybasic(string trade_date, string ts_code, string start_date, string end_date)
         {
             try
             {
@@ -1857,11 +1859,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1872,7 +1874,7 @@ namespace TuSharePro
         /// <param name="index_code"></param>
         /// <param name="level"></param>
         /// <param name="src"></param>
-        public _BaseResponse index_classify(string index_code, string level, string src)
+        public async Task<_BaseResponse> index_classify(string index_code, string level, string src)
         {
             try
             {
@@ -1892,11 +1894,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1907,7 +1909,7 @@ namespace TuSharePro
         /// <param name="index_code"></param>
         /// <param name="ts_code"></param>
         /// <param name="is_new"></param>
-        public _BaseResponse index_member(string index_code, string level, string is_new)
+        public async Task<_BaseResponse> index_member(string index_code, string level, string is_new)
         {
             try
             {
@@ -1927,11 +1929,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1942,7 +1944,7 @@ namespace TuSharePro
         /// 基金-公募基金列表
         /// </summary>
         /// <param name="market"></param>
-        public _BaseResponse fund_basic(string market)
+        public async Task<_BaseResponse> fund_basic(string market)
         {
             try
             {
@@ -1960,11 +1962,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -1972,7 +1974,8 @@ namespace TuSharePro
         /// <summary>
         /// 基金-公募基金列表
         /// </summary>
-        public _BaseResponse fund_company()
+        
+        public async Task<_BaseResponse> fund_company()
         {
             try
             {
@@ -1989,11 +1992,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2003,7 +2006,8 @@ namespace TuSharePro
         /// </summary>
         /// <param name="market"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fund_nav(string ts_code,string end_date)
+        
+        public async Task<_BaseResponse> fund_nav(string ts_code,string end_date)
         {
             try
             {
@@ -2022,11 +2026,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2038,7 +2042,8 @@ namespace TuSharePro
         /// <param name="ex_date"></param>
         /// <param name="pay_date"></param>
         /// <param name="ts_code"></param>
-        public _BaseResponse fund_div(string ann_date, string ex_date,string pay_date, string ts_code)
+        
+        public async Task<_BaseResponse> fund_div(string ann_date, string ex_date,string pay_date, string ts_code)
         {
             try
             {
@@ -2059,11 +2064,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2072,7 +2077,8 @@ namespace TuSharePro
         /// 基金-公募基金持仓数据
         /// </summary>
         /// <param name="ts_code"></param>
-        public _BaseResponse fund_portfolio(string ts_code)
+        
+        public async Task<_BaseResponse> fund_portfolio(string ts_code)
         {
             try
             {
@@ -2090,11 +2096,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2106,7 +2112,8 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fund_daily(string ts_code,string trade_date,string start_date,string end_date)
+        
+        public async Task<_BaseResponse> fund_daily(string ts_code,string trade_date,string start_date,string end_date)
         {
             try
             {
@@ -2127,11 +2134,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2143,7 +2150,8 @@ namespace TuSharePro
         /// </summary>
         /// <param name="exchange"></param>
         /// <param name="fut_type"></param>
-        public _BaseResponse fut_basic(string exchange, string fut_type)
+        
+        public async Task<_BaseResponse> fut_basic(string exchange, string fut_type)
         {
             try
             {
@@ -2162,11 +2170,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2179,7 +2187,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fut_daily(string trade_date, string ts_code, string exchange, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> fut_daily(string trade_date, string ts_code, string exchange, string start_date, string end_date)
         {
             try
             {
@@ -2201,11 +2210,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2218,7 +2227,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fut_holding(string trade_date, string symbol,  string start_date, string end_date, string exchange)
+        
+        public async Task<_BaseResponse> fut_holding(string trade_date, string symbol,  string start_date, string end_date, string exchange)
         {
             try
             {
@@ -2240,11 +2250,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
 
         }
@@ -2257,7 +2267,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fut_wsr(string trade_date, string symbol, string start_date, string end_date, string exchange)
+        
+        public async Task<_BaseResponse> fut_wsr(string trade_date, string symbol, string start_date, string end_date, string exchange)
         {
             try
             {
@@ -2279,11 +2290,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2295,7 +2306,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse fut_settle(string trade_date, string ts_code, string start_date, string end_date, string exchange)
+        
+        public async Task<_BaseResponse> fut_settle(string trade_date, string ts_code, string start_date, string end_date, string exchange)
         {
             try
             {
@@ -2317,11 +2329,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
         #endregion
@@ -2332,8 +2344,8 @@ namespace TuSharePro
         /// </summary>
         /// <param name="exchange"></param>
         /// <param name="call_put"></param>
-
-        public _BaseResponse opt_basic(string exchange, string call_put)
+        
+        public async Task<_BaseResponse> opt_basic(string exchange, string call_put)
         {
             try
             {
@@ -2353,11 +2365,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2369,7 +2381,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse opt_daily( string ts_code, string trade_date, string start_date, string end_date, string exchange)
+        
+        public async Task<_BaseResponse> opt_daily( string ts_code, string trade_date, string start_date, string end_date, string exchange)
         {
             try
             {
@@ -2391,11 +2404,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
         #endregion
@@ -2407,7 +2420,8 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="classify"></param>
         /// <param name="ts_code"></param>
-        public _BaseResponse fx_obasic(string exchange, string classify, string ts_code)
+        
+        public async Task<_BaseResponse> fx_obasic(string exchange, string classify, string ts_code)
         {
             try
             {
@@ -2428,11 +2442,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2444,7 +2458,8 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="exchange"></param>
-        public _BaseResponse fx_daily(string ts_code, string trade_date, string start_date, string end_date, string exchange)
+        
+        public async Task<_BaseResponse> fx_daily(string ts_code, string trade_date, string start_date, string end_date, string exchange)
         {
             try
             {
@@ -2467,11 +2482,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
         #endregion
@@ -2483,7 +2498,8 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse shibor(string date, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> shibor(string date, string start_date, string end_date)
         {
             try
             {
@@ -2503,11 +2519,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2518,7 +2534,8 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="bank"></param>
-        public _BaseResponse shibor_quote(string date, string start_date, string end_date,string bank)
+        
+        public async Task<_BaseResponse> shibor_quote(string date, string start_date, string end_date,string bank)
         {
             try
             {
@@ -2539,11 +2556,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2553,7 +2570,8 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse shibor_lpr(string date, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> shibor_lpr(string date, string start_date, string end_date)
         {
             try
             {
@@ -2573,11 +2591,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2588,7 +2606,8 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="curr_type"></param>
-        public _BaseResponse libor(string date, string start_date, string end_date, string curr_type)
+        
+        public async Task<_BaseResponse> libor(string date, string start_date, string end_date, string curr_type)
         {
             try
             {
@@ -2609,11 +2628,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2623,7 +2642,8 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse hibor(string date, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> hibor(string date, string start_date, string end_date)
         {
             try
             {
@@ -2643,11 +2663,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2657,7 +2677,8 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse wz_index(string date, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> wz_index(string date, string start_date, string end_date)
         {
             try
             {
@@ -2677,11 +2698,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2691,7 +2712,8 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public _BaseResponse gz_index(string date, string start_date, string end_date)
+        
+        public async Task<_BaseResponse> gz_index(string date, string start_date, string end_date)
         {
             try
             {
@@ -2711,11 +2733,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
         #endregion
@@ -2728,7 +2750,8 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="start_date"></param>
         /// <param name="src"></param>
-        public _BaseResponse news(string start_date, string end_date, string src)
+        
+        public async Task<_BaseResponse> news(string start_date, string end_date, string src)
         {
             try
             {
@@ -2748,11 +2771,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2760,7 +2783,8 @@ namespace TuSharePro
         /// 特色大数据-新闻联播
         /// </summary>
         /// <param name="date"></param>
-        public _BaseResponse cctv_news(string date)
+        
+        public async Task<_BaseResponse> cctv_news(string date)
         {
             try
             {
@@ -2778,11 +2802,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
 
@@ -2794,7 +2818,8 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="year"></param>
-        public _BaseResponse anns(string ts_code, string ann_date, string start_date, string end_date, string year)
+        
+        public async Task<_BaseResponse> anns(string ts_code, string ann_date, string start_date, string end_date, string year)
         {
             try
             {
@@ -2816,11 +2841,11 @@ namespace TuSharePro
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return request.Request<_BaseResponse>(url, json);
+                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
             }
             catch (Exception ex)
             {
-                return new _BaseResponse() { code = -1, msg = ex.Message };
+                return await Task.Run(() => new _BaseResponse() { code = -1, msg = ex.Message });
             }
         }
         #endregion
