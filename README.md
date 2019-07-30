@@ -21,7 +21,7 @@ TuSharePro.Net是为了方便.Net开发者使用的Api接口封装包
 #### 如何使用
 ##### 安装
 ```
-Install-Package TuSharePro.Net -Version 1.0.1
+Install-Package TuSharePro.Net -Version 1.0.2
 ```
 
 ##### 示例
