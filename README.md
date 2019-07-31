@@ -13,7 +13,7 @@ TuSharePro.Net是为了方便.Net开发者使用的Api接口封装包
     > ToDataTable：将数据转换成DataTable格式   
     > Utility.PrintDataTable：tab分割排版打印DataTable
 - 最新版本
-    > 1.0.2
+    > 1.0.1
 - 更新日志
     > 1.0.1 初始版本    
     > 1.0.2 更新API调用方法，重写为异步方法（获取api结果需要调用.Result属性）！    
@@ -21,7 +21,7 @@ TuSharePro.Net是为了方便.Net开发者使用的Api接口封装包
 #### 如何使用
 ##### 安装
 ```
-Install-Package TuSharePro.Net -Version 1.0.2
+Install-Package TuSharePro.Net -Version 1.0.1
 ```
 
 ##### 示例
