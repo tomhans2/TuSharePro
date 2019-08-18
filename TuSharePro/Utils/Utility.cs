@@ -20,5 +20,16 @@ namespace TuSharePro.Utils
 
             }
         }
+
+        public static string toJsonArray(string str)
+        {
+            string result = "";
+            string[] strArray = str.Split(',');
+            foreach (string field in strArray)
+            {
+                result = result + "\"" + field + "\"" + ",";
+            }
+            return "[" + result.Substring(0, result.Length - 1) + "]";
+        }
     }
 }

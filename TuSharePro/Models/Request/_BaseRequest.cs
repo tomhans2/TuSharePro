@@ -16,6 +16,7 @@ namespace TuSharePro.Models.Request
         public string api_name { get; set; }
         [JsonProperty(PropertyName = "params")]
         public Dictionary<string,string> paramsList {get; set;}
+        public string[] fields { get; set; }
 
         public T Request<T>(string url, string jsonData)
         {

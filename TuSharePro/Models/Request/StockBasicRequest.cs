@@ -11,6 +11,6 @@ namespace TuSharePro.Models.Request
         public string is_hs { get; set; }
         public string list_status { get; set; }
         public string exchange { get; set; }
-
+        
     }
 }

@@ -31,7 +31,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> daily(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> daily(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -40,11 +40,14 @@ namespace TuSharePro
                 paramsList.Add("trade_date", trade_date);
                 paramsList.Add("start_date", start_date);
                 paramsList.Add("end_date", end_date);
+
                 BarRequest request = new BarRequest
                 {
                     token = Token,
                     api_name = "daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
+
                 };
                 string json = JsonConvert.SerializeObject(request, 
                     new JsonSerializerSettings
@@ -68,7 +71,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> weekly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> weekly(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -81,7 +84,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "weekly",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -105,7 +109,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> monthly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> monthly(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -118,7 +122,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "monthly",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -142,7 +147,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> index_daily(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_daily(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -155,7 +160,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -179,7 +185,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> index_weekly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_weekly(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -192,7 +198,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_weekly",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -216,7 +223,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> index_monthly(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_monthly(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -229,7 +236,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_monthly",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -253,7 +261,7 @@ namespace TuSharePro
         /// <param name="is_hs"></param>
         /// <param name="list_status"></param>
         /// <param name="exchange"></param>
-        public async Task<_BaseResponse> stock_basic(string is_hs, string list_status, string exchange)
+        public async Task<_BaseResponse> stock_basic(string is_hs, string list_status, string exchange, string fields="")
         {
             try
             {
@@ -261,12 +269,13 @@ namespace TuSharePro
                 paramsList.Add("is_hs", is_hs);
                 paramsList.Add("list_status", list_status);
                 paramsList.Add("exchange", exchange);
-                
+
                 StockBasicRequest request = new StockBasicRequest
                 {
                     token = Token,
                     api_name = "stock_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -274,7 +283,8 @@ namespace TuSharePro
                         NullValueHandling = NullValueHandling.Ignore
                     });
 
-                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
+                Func<_BaseResponse> function = new Func<_BaseResponse>(() => request.Request<_BaseResponse>(url, json));
+                return await Task.Run(function);
             }
             catch (Exception ex)
             {
@@ -289,7 +299,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="is_open"></param>
-        public async Task<_BaseResponse> trade_cal(string exchange, string start_date, string end_date,string is_open)
+        public async Task<_BaseResponse> trade_cal(string exchange, string start_date, string end_date,string is_open, string fields="")
         {
             try
             {
@@ -302,7 +312,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "trade_cal",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -324,7 +335,7 @@ namespace TuSharePro
         /// <param name="hs_type"></param>
         /// <param name="is_new"></param>
 
-        public async Task<_BaseResponse> hs_const(string hs_type, string is_new)
+        public async Task<_BaseResponse> hs_const(string hs_type, string is_new, string fields="")
         {
             try
             {
@@ -335,7 +346,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "hs_const",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -355,7 +367,7 @@ namespace TuSharePro
         /// 市场信息-上市公司基本信息
         /// </summary>
         /// <param name="exchange"></param>
-        public async Task<_BaseResponse> stock_company(string exchange)
+        public async Task<_BaseResponse> stock_company(string exchange, string fields="")
         {
             try
             {
@@ -365,7 +377,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stock_company",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -386,7 +399,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> new_share(string start_date, string end_date)
+        public async Task<_BaseResponse> new_share(string start_date, string end_date, string fields="")
         {
             try
             {
@@ -397,7 +410,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "new_share",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -418,7 +432,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> namechange(string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> namechange(string ts_code, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -430,7 +444,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "namechange",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -453,7 +468,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> adj_factor(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> adj_factor(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -466,7 +481,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "adj_factor",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -489,7 +505,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> daily_basic(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> daily_basic(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -502,7 +518,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "daily_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -525,7 +542,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> moneyflow(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> moneyflow(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -538,7 +555,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "moneyflow",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -561,7 +579,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> stk_limit(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> stk_limit(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -574,7 +592,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stk_limit",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -596,7 +615,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="suspend_date"></param>
         /// <param name="resume_date"></param>
-        public async Task<_BaseResponse> suspend(string ts_code, string suspend_date, string resume_date)
+        public async Task<_BaseResponse> suspend(string ts_code, string suspend_date, string resume_date, string fields="")
         {
             try
             {
@@ -609,7 +628,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "suspend",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -637,7 +657,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public async Task<_BaseResponse> income(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> income(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type, string fields="")
         {
             try
             {
@@ -654,7 +674,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "income",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -680,7 +701,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public async Task<_BaseResponse> balancesheet(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> balancesheet(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type, string fields="")
         {
             try
             {
@@ -697,7 +718,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "balancesheet",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -723,7 +745,7 @@ namespace TuSharePro
         /// <param name="period"></param>
         /// <param name="report_type"></param>
         /// <param name="comp_type"></param>
-        public async Task<_BaseResponse> cashflow(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type)
+        public async Task<_BaseResponse> cashflow(string ts_code, string ann_date, string start_date, string end_date, string period, string report_type, string comp_type, string fields="")
         {
             try
             {
@@ -740,7 +762,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "cashflow",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -765,7 +788,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="period"></param>
         /// <param name="type"></param>
-        public async Task<_BaseResponse> forecast(string ts_code, string ann_date, string start_date, string end_date, string period, string type)
+        public async Task<_BaseResponse> forecast(string ts_code, string ann_date, string start_date, string end_date, string period, string type, string fields="")
         {
             try
             {
@@ -781,7 +804,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "forecast",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -805,7 +829,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public async Task<_BaseResponse> express(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> express(string ts_code, string ann_date, string start_date, string end_date, string period, string fields="")
         {
             try
             {
@@ -820,7 +844,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "express",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -844,7 +869,7 @@ namespace TuSharePro
         /// <param name="record_date"></param>
         /// <param name="ex_date"></param>
         /// <param name="imp_ann_date"></param>
-        public async Task<_BaseResponse> dividend(string ts_code, string ann_date, string record_date, string ex_date, string imp_ann_date)
+        public async Task<_BaseResponse> dividend(string ts_code, string ann_date, string record_date, string ex_date, string imp_ann_date, string fields="")
         {
             try
             {
@@ -859,7 +884,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "dividend",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -883,7 +909,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public async Task<_BaseResponse> fina_indicator(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> fina_indicator(string ts_code, string ann_date, string start_date, string end_date, string period, string fields="")
         {
             try
             {
@@ -898,7 +924,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fina_indicator",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -922,7 +949,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         /// <param name="period"></param>
-        public async Task<_BaseResponse> fina_audit(string ts_code, string ann_date, string start_date, string end_date, string period)
+        public async Task<_BaseResponse> fina_audit(string ts_code, string ann_date, string start_date, string end_date, string period, string fields="")
         {
             try
             {
@@ -937,7 +964,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fina_audit",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -961,7 +989,7 @@ namespace TuSharePro
         /// <param name="type"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> fina_mainbz(string ts_code, string period, string type, string start_date, string end_date)
+        public async Task<_BaseResponse> fina_mainbz(string ts_code, string period, string type, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -976,7 +1004,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fina_mainbz",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -999,7 +1028,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="pre_date"></param>
         /// <param name="actual_date"></param>
-        public async Task<_BaseResponse> disclosure_date(string ts_code, string end_date, string pre_date, string actual_date)
+        public async Task<_BaseResponse> disclosure_date(string ts_code, string end_date, string pre_date, string actual_date, string fields="")
         {
             try
             {
@@ -1013,7 +1042,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "disclosure_date",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1037,7 +1067,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> moneyflow_hsgt(string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> moneyflow_hsgt(string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1050,7 +1080,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "moneyflow_hsgt",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1075,7 +1106,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="market_type"></param>
 
-        public async Task<_BaseResponse> hsgt_top10(string ts_code,string trade_date, string start_date, string end_date,string market_type)
+        public async Task<_BaseResponse> hsgt_top10(string ts_code,string trade_date, string start_date, string end_date,string market_type, string fields="")
         {
             try
             {
@@ -1090,7 +1121,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "hsgt_top10",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1115,7 +1147,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="market_type"></param>
 
-        public async Task<_BaseResponse> ggt_top10(string ts_code, string trade_date, string start_date, string end_date, string market_type)
+        public async Task<_BaseResponse> ggt_top10(string ts_code, string trade_date, string start_date, string end_date, string market_type, string fields="")
         {
             try
             {
@@ -1130,7 +1162,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "ggt_top10",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1154,7 +1187,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> margin(string trade_date, string exchange_id, string start_date, string end_date)
+        public async Task<_BaseResponse> margin(string trade_date, string exchange_id, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1168,7 +1201,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "margin",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1192,7 +1226,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> margin_detail(string trade_date, string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> margin_detail(string trade_date, string ts_code, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1206,7 +1240,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "margin_detail",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1231,7 +1266,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> top10_holders(string ts_code, string period, string ann_date, string start_date, string end_date)
+        public async Task<_BaseResponse> top10_holders(string ts_code, string period, string ann_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1246,7 +1281,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "top10_holders",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1271,7 +1307,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> top10_floatholders(string ts_code, string period, string ann_date, string start_date, string end_date)
+        public async Task<_BaseResponse> top10_floatholders(string ts_code, string period, string ann_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1286,7 +1322,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "top10_floatholders",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1308,7 +1345,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="ts_code"></param>
 
-        public async Task<_BaseResponse> top_list(string trade_date, string ts_code)
+        public async Task<_BaseResponse> top_list(string trade_date, string ts_code, string fields="")
         {
             try
             {
@@ -1320,7 +1357,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "top_list",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1342,7 +1380,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="ts_code"></param>
 
-        public async Task<_BaseResponse> top_inst(string trade_date, string ts_code)
+        public async Task<_BaseResponse> top_inst(string trade_date, string ts_code, string fields="")
         {
             try
             {
@@ -1354,7 +1392,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "top_inst",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1375,7 +1414,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="ts_code"></param>
 
-        public async Task<_BaseResponse> pledge_stat(string ts_code)
+        public async Task<_BaseResponse> pledge_stat(string ts_code, string fields="")
         {
             try
             {
@@ -1386,7 +1425,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "pledge_stat",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1407,7 +1447,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="ts_code"></param>
 
-        public async Task<_BaseResponse> pledge_detail(string ts_code)
+        public async Task<_BaseResponse> pledge_detail(string ts_code, string fields="")
         {
             try
             {
@@ -1418,7 +1458,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "pledge_detail",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1441,7 +1482,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
 
-        public async Task<_BaseResponse> repurchase(string ann_date,string start_date, string end_date)
+        public async Task<_BaseResponse> repurchase(string ann_date,string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1454,7 +1495,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "repurchase",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1474,7 +1516,7 @@ namespace TuSharePro
         /// 市场参考-概念股分类
         /// </summary>
         /// <param name="src"></param>
-        public async Task<_BaseResponse> concept(string src)
+        public async Task<_BaseResponse> concept(string src, string fields="")
         {
             try
             {
@@ -1485,7 +1527,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "concept",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1506,7 +1549,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="id"></param>
         /// <param name="ts_code"></param>
-        public async Task<_BaseResponse> concept_detail(string id,string ts_code)
+        public async Task<_BaseResponse> concept_detail(string id,string ts_code, string fields="")
         {
             try
             {
@@ -1518,7 +1561,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "concept_detail",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1542,7 +1586,7 @@ namespace TuSharePro
         /// <param name="float_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> share_float(string ts_code, string ann_date, string float_date, string start_date, string end_date)
+        public async Task<_BaseResponse> share_float(string ts_code, string ann_date, string float_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1557,7 +1601,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "share_float",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1581,7 +1626,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> block_trade(string ts_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> block_trade(string ts_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1595,7 +1640,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "block_trade",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1617,7 +1663,7 @@ namespace TuSharePro
         /// <param name="date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> stk_account(string date,  string start_date, string end_date)
+        public async Task<_BaseResponse> stk_account(string date,  string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1630,7 +1676,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stk_account",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1651,7 +1698,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> stk_account_old(string start_date, string end_date)
+        public async Task<_BaseResponse> stk_account_old(string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1663,7 +1710,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stk_account_old",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1686,7 +1734,7 @@ namespace TuSharePro
         /// <param name="enddate"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> stk_holdernumber(string ts_code, string enddate, string start_date, string end_date)
+        public async Task<_BaseResponse> stk_holdernumber(string ts_code, string enddate, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1700,7 +1748,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stk_holdernumber",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1725,7 +1774,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="trade_type"></param>
         /// <param name="holder_type"></param>
-        public async Task<_BaseResponse> stk_holdertrade(string ts_code, string ann_date, string start_date, string end_date, string trade_type, string holder_type)
+        public async Task<_BaseResponse> stk_holdertrade(string ts_code, string ann_date, string start_date, string end_date, string trade_type, string holder_type, string fields="")
         {
             try
             {
@@ -1741,7 +1790,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "stk_holdertrade",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1765,7 +1815,7 @@ namespace TuSharePro
         /// <param name="market"></param>
         /// <param name="publisher"></param>
         /// <param name="category"></param>
-        public async Task<_BaseResponse> index_basic(string market, string publisher, string category)
+        public async Task<_BaseResponse> index_basic(string market, string publisher, string category, string fields="")
         {
             try
             {
@@ -1778,7 +1828,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1801,7 +1852,7 @@ namespace TuSharePro
         /// <param name="trade_date"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> index_weight(string index_code, string trade_date, string start_date, string end_date)
+        public async Task<_BaseResponse> index_weight(string index_code, string trade_date, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1815,7 +1866,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_weight",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1838,7 +1890,7 @@ namespace TuSharePro
         /// <param name="ts_code"></param>
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
-        public async Task<_BaseResponse> index_dailybasic(string trade_date, string ts_code, string start_date, string end_date)
+        public async Task<_BaseResponse> index_dailybasic(string trade_date, string ts_code, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -1852,7 +1904,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_dailybasic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1874,7 +1927,7 @@ namespace TuSharePro
         /// <param name="index_code"></param>
         /// <param name="level"></param>
         /// <param name="src"></param>
-        public async Task<_BaseResponse> index_classify(string index_code, string level, string src)
+        public async Task<_BaseResponse> index_classify(string index_code, string level, string src, string fields="")
         {
             try
             {
@@ -1887,7 +1940,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_classify",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1909,7 +1963,7 @@ namespace TuSharePro
         /// <param name="index_code"></param>
         /// <param name="ts_code"></param>
         /// <param name="is_new"></param>
-        public async Task<_BaseResponse> index_member(string index_code, string level, string is_new)
+        public async Task<_BaseResponse> index_member(string index_code, string level, string is_new, string fields="")
         {
             try
             {
@@ -1922,7 +1976,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "index_member",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1944,7 +1999,7 @@ namespace TuSharePro
         /// 基金-公募基金列表
         /// </summary>
         /// <param name="market"></param>
-        public async Task<_BaseResponse> fund_basic(string market)
+        public async Task<_BaseResponse> fund_basic(string market, string fields="")
         {
             try
             {
@@ -1955,7 +2010,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -1975,7 +2031,7 @@ namespace TuSharePro
         /// 基金-公募基金列表
         /// </summary>
         
-        public async Task<_BaseResponse> fund_company()
+        public async Task<_BaseResponse> fund_company(string fields="")
         {
             try
             {
@@ -1985,7 +2041,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_company",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2007,7 +2064,7 @@ namespace TuSharePro
         /// <param name="market"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fund_nav(string ts_code,string end_date)
+        public async Task<_BaseResponse> fund_nav(string ts_code,string end_date, string fields="")
         {
             try
             {
@@ -2019,7 +2076,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_nav",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2043,7 +2101,7 @@ namespace TuSharePro
         /// <param name="pay_date"></param>
         /// <param name="ts_code"></param>
         
-        public async Task<_BaseResponse> fund_div(string ann_date, string ex_date,string pay_date, string ts_code)
+        public async Task<_BaseResponse> fund_div(string ann_date, string ex_date,string pay_date, string ts_code, string fields="")
         {
             try
             {
@@ -2057,14 +2115,16 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_div",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     });
-                return await Task.Run(() => request.Request<_BaseResponse>(url, json));
+                Func<_BaseResponse> function = new Func<_BaseResponse>(() => request.Request<_BaseResponse>(url, json));
+                return await Task.Run(function);
             }
             catch (Exception ex)
             {
@@ -2078,7 +2138,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="ts_code"></param>
         
-        public async Task<_BaseResponse> fund_portfolio(string ts_code)
+        public async Task<_BaseResponse> fund_portfolio(string ts_code, string fields="")
         {
             try
             {
@@ -2089,7 +2149,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_portfolio",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2113,7 +2174,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fund_daily(string ts_code,string trade_date,string start_date,string end_date)
+        public async Task<_BaseResponse> fund_daily(string ts_code,string trade_date,string start_date,string end_date, string fields="")
         {
             try
             {
@@ -2127,7 +2188,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fund_daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2151,7 +2213,7 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="fut_type"></param>
         
-        public async Task<_BaseResponse> fut_basic(string exchange, string fut_type)
+        public async Task<_BaseResponse> fut_basic(string exchange, string fut_type, string fields="")
         {
             try
             {
@@ -2163,7 +2225,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fut_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2188,7 +2251,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fut_daily(string trade_date, string ts_code, string exchange, string start_date, string end_date)
+        public async Task<_BaseResponse> fut_daily(string trade_date, string ts_code, string exchange, string start_date, string end_date, string fields="")
         {
             try
             {
@@ -2203,7 +2266,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fut_daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2228,7 +2292,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fut_holding(string trade_date, string symbol,  string start_date, string end_date, string exchange)
+        public async Task<_BaseResponse> fut_holding(string trade_date, string symbol,  string start_date, string end_date, string exchange, string fields="")
         {
             try
             {
@@ -2243,7 +2307,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fut_holding",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2268,7 +2333,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fut_wsr(string trade_date, string symbol, string start_date, string end_date, string exchange)
+        public async Task<_BaseResponse> fut_wsr(string trade_date, string symbol, string start_date, string end_date, string exchange, string fields="")
         {
             try
             {
@@ -2283,7 +2348,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fut_wsr",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2307,7 +2373,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> fut_settle(string trade_date, string ts_code, string start_date, string end_date, string exchange)
+        public async Task<_BaseResponse> fut_settle(string trade_date, string ts_code, string start_date, string end_date, string exchange, string fields="")
         {
             try
             {
@@ -2322,7 +2388,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fut_settle",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2345,7 +2412,7 @@ namespace TuSharePro
         /// <param name="exchange"></param>
         /// <param name="call_put"></param>
         
-        public async Task<_BaseResponse> opt_basic(string exchange, string call_put)
+        public async Task<_BaseResponse> opt_basic(string exchange, string call_put, string fields="")
         {
             try
             {
@@ -2358,7 +2425,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "opt_basic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2382,7 +2450,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="end_date"></param>
         
-        public async Task<_BaseResponse> opt_daily( string ts_code, string trade_date, string start_date, string end_date, string exchange)
+        public async Task<_BaseResponse> opt_daily( string ts_code, string trade_date, string start_date, string end_date, string exchange, string fields="")
         {
             try
             {
@@ -2397,7 +2465,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "opt_daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2421,7 +2490,7 @@ namespace TuSharePro
         /// <param name="classify"></param>
         /// <param name="ts_code"></param>
         
-        public async Task<_BaseResponse> fx_obasic(string exchange, string classify, string ts_code)
+        public async Task<_BaseResponse> fx_obasic(string exchange, string classify, string ts_code, string fields="")
         {
             try
             {
@@ -2435,7 +2504,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fx_obasic",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2459,7 +2529,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="exchange"></param>
         
-        public async Task<_BaseResponse> fx_daily(string ts_code, string trade_date, string start_date, string end_date, string exchange)
+        public async Task<_BaseResponse> fx_daily(string ts_code, string trade_date, string start_date, string end_date, string exchange, string fields="")
         {
             try
             {
@@ -2475,7 +2545,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "fx_daily",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2751,7 +2822,7 @@ namespace TuSharePro
         /// <param name="start_date"></param>
         /// <param name="src"></param>
         
-        public async Task<_BaseResponse> news(string start_date, string end_date, string src)
+        public async Task<_BaseResponse> news(string start_date, string end_date, string src, string fields="")
         {
             try
             {
@@ -2764,7 +2835,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "news",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2784,7 +2856,7 @@ namespace TuSharePro
         /// </summary>
         /// <param name="date"></param>
         
-        public async Task<_BaseResponse> cctv_news(string date)
+        public async Task<_BaseResponse> cctv_news(string date, string fields="")
         {
             try
             {
@@ -2795,7 +2867,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "cctv_news",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
@@ -2819,7 +2892,7 @@ namespace TuSharePro
         /// <param name="end_date"></param>
         /// <param name="year"></param>
         
-        public async Task<_BaseResponse> anns(string ts_code, string ann_date, string start_date, string end_date, string year)
+        public async Task<_BaseResponse> anns(string ts_code, string ann_date, string start_date, string end_date, string year, string fields="")
         {
             try
             {
@@ -2834,7 +2907,8 @@ namespace TuSharePro
                 {
                     token = Token,
                     api_name = "anns",
-                    paramsList = paramsList
+                    paramsList = paramsList,
+                    fields = fields.Split(',')
                 };
                 string json = JsonConvert.SerializeObject(request,
                     new JsonSerializerSettings
