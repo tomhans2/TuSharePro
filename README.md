@@ -16,8 +16,11 @@ TuSharePro.Net是为了方便.Net开发者使用的Api接口封装包
     > 1.0.3
 - 更新日志
     > 1.0.1 初始版本/Initial Release
+    
     > 1.0.2 更新API调用方法，重写为异步方法（获取api结果需要调用.Result属性）！/ Update request using async methods
+    
     > 1.0.3 加入请求fields（默认fields并不是获取全部字段）/ Add fields parameter in request function, which the default request fields do not contain all columns
+    
 #### 如何使用
 ##### 安装
 ```
