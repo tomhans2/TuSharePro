@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>TuSharePro.Net</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>Tom Han</authors>
     <owners>Tom Han</owners>
     <licenseUrl>https://github.com/tomhans2/TuSharePro/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <iconUrl>https://github.com/tomhans2/TuSharePro/blob/master/favicon-32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>TuSharePro api for .Net</description>
-    <releaseNotes>Update: Rewrite api function using async</releaseNotes>
+    <releaseNotes>Update: Rewrite api function using async, and add fields parameter for function request</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>TuSharePro Api</tags>
     <dependencies>
